@@ -18,3 +18,6 @@ tstcrc.exe
 tstcrc
 bin/prc.exe
 bin/prc
+/.vs
+/prj_vs/.vs/prj_vs/v15/Browse.VC.opendb
+/prj_vs/.vs/prj_vs/v15/Browse.VC.db
