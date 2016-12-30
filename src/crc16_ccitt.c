@@ -1,4 +1,7 @@
-#define POLY 0x8408
+#include "checksum.h"
+
+//#define POLY 0x8408
+#define POLY 0x1021
 /*
 //                                      16   12   5
 // this is the CCITT CRC 16 polynomial X  + X  + X  + 1.
@@ -8,7 +11,7 @@
 // represent the 17 bit value.
 */
 
-unsigned short crc16(char *data_p, unsigned short length)
+uint16_t crc16_ccitt(unsigned char *data_p, uint32_t length)
 {
       unsigned char i;
       unsigned int data;
@@ -34,4 +37,31 @@ unsigned short crc16(char *data_p, unsigned short length)
       crc = (crc << 8) | (data >> 8 & 0xff);
 
       return (crc);
+}
+uint16_t update_crc16_ccitt(uint16_t crc_init, unsigned char *data_p, uint16_t length)
+{
+	unsigned char i;
+	unsigned int data;
+	unsigned int crc = crc_init;
+
+	if (length == 0)
+		return (~crc);
+
+	do
+	{
+		for (i = 0, data = (unsigned int)0xff & *data_p++;
+			i < 8;
+			i++, data >>= 1)
+		{
+			if ((crc & 0x0001) ^ (data & 0x0001))
+				crc = (crc >> 1) ^ POLY;
+			else  crc >>= 1;
+		}
+	} while (--length);
+
+	crc = ~crc;
+	data = crc;
+	crc = (crc << 8) | (data >> 8 & 0xff);
+
+	return (crc);
 }
