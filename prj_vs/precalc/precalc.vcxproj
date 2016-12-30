@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{83721CD7-8DC8-4180-8D0E-6BEDD1754114}</ProjectGuid>
+    <ProjectGuid>{624A4118-441A-4F64-ACCF-794C211EB968}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>libcrc</RootNamespace>
+    <RootNamespace>precalc</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -88,11 +88,19 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>..\Debug\precalc.exe --crc32 ../../tab/gentab32.inc
+..\Debug\precalc.exe --crc64 ../../tab/gentab64.inc</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,19 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\examples\tstcrc.c" />
-    <ClCompile Include="..\..\src\crc16.c" />
-    <ClCompile Include="..\..\src\crc32.c" />
-    <ClCompile Include="..\..\src\crc64.c" />
-    <ClCompile Include="..\..\src\crc8.c" />
-    <ClCompile Include="..\..\src\crcccitt.c" />
-    <ClCompile Include="..\..\src\crcdnp.c" />
-    <ClCompile Include="..\..\src\crckrmit.c" />
-    <ClCompile Include="..\..\src\crcsick.c" />
-    <ClCompile Include="..\..\src\nmea-chk.c" />
+    <ClCompile Include="..\..\precalc\crc32_table.c" />
+    <ClCompile Include="..\..\precalc\crc64_table.c" />
+    <ClCompile Include="..\..\precalc\precalc.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\checksum.h" />
+    <ClInclude Include="..\..\precalc\precalc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

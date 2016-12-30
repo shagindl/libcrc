@@ -19,5 +19,10 @@ tstcrc
 bin/prc.exe
 bin/prc
 /.vs
-/prj_vs/.vs/prj_vs/v15/Browse.VC.opendb
-/prj_vs/.vs/prj_vs/v15/Browse.VC.db
+/prj_vs/.vs/
+/prj_vs/precalc/Debug
+/prj_vs/libcrc/Debug
+*.ilk
+*.inc
+*.user
+*.pdb
