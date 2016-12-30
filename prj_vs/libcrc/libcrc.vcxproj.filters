@@ -48,7 +48,10 @@
     <ClCompile Include="..\..\src\nmea-chk.c">
       <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\crc-16.c">
+    <ClCompile Include="..\..\src\crc16_ccitt.c">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mayak_crc.c">
       <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>

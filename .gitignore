@@ -27,3 +27,4 @@ bin/prc
 *.user
 *.pdb
 /bin/null
+*.log

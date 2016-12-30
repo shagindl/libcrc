@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\examples\tstcrc.c" />
-    <ClCompile Include="..\..\src\crc-16.c" />
+    <ClCompile Include="..\..\src\crc16_ccitt.c" />
     <ClCompile Include="..\..\src\crc16.c" />
     <ClCompile Include="..\..\src\crc32.c" />
     <ClCompile Include="..\..\src\crc64.c" />
@@ -154,6 +154,7 @@
     <ClCompile Include="..\..\src\crcdnp.c" />
     <ClCompile Include="..\..\src\crckrmit.c" />
     <ClCompile Include="..\..\src\crcsick.c" />
+    <ClCompile Include="..\..\src\mayak_crc.c" />
     <ClCompile Include="..\..\src\nmea-chk.c" />
   </ItemGroup>
   <ItemGroup>

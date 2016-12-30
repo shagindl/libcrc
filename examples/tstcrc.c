@@ -68,6 +68,9 @@ int main( int argc, char *argv[] ) {
 	uint16_t crc_dnp_val;
 	uint16_t crc_sick_val;
 	uint16_t crc_kermit_val;
+	uint16_t crc_crc16_ccitt_val;
+	uint16_t crc_crc16_ccitt_val_r1;
+	uint16_t crc_3309_val;
 	uint32_t crc_32_val;
 	uint16_t low_byte;
 	uint16_t high_byte;
@@ -137,6 +140,9 @@ int main( int argc, char *argv[] ) {
 		crc_sick_val       = 0x0000;
 		crc_ccitt_0000_val = 0x0000;
 		crc_ccitt_ffff_val = 0xffff;
+		crc_crc16_ccitt_val = 0xffff;
+		crc_crc16_ccitt_val_r1 = 0xffff;
+		crc_3309_val = 0xFFFF;
 		crc_ccitt_1d0f_val = 0x1d0f;
 		crc_kermit_val     = 0x0000;
 		crc_32_val         = 0xffffffffL;
@@ -193,6 +199,8 @@ int main( int argc, char *argv[] ) {
 		}
 
 		else {
+			uint8_t contents_file[128 * 1024] = {0};
+			uint32_t size_contents_file = 0;
 
 			prev_byte = 0;
 #if defined(_MSC_VER)
@@ -215,9 +223,14 @@ int main( int argc, char *argv[] ) {
 					crc_ccitt_1d0f_val = update_crc_ccitt(  crc_ccitt_1d0f_val, (unsigned char) ch            );
 					crc_kermit_val     = update_crc_kermit( crc_kermit_val,     (unsigned char) ch            );
 					crc_32_val         = update_crc_32(     crc_32_val,         (unsigned char) ch            );
+					crc_crc16_ccitt_val = update_crc16_ccitt(crc_crc16_ccitt_val, (unsigned char *)&ch, 1);
 
 					prev_byte = (unsigned char) ch;
+					contents_file[size_contents_file++] = ch;
 				}
+
+				crc_crc16_ccitt_val_r1 = crc16_ccitt(contents_file, size_contents_file);
+				crc_3309_val = crc_3309(crc_3309_val, contents_file, size_contents_file);
 
 				fclose( fp );
 			}
@@ -245,6 +258,9 @@ int main( int argc, char *argv[] ) {
 				  "CRC16 (Sick)       = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
 				  "CRC-CCITT (0x0000) = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
 				  "CRC-CCITT (0xffff) = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
+				  "CRC16-CCITT (0xffff) = 0x%04" PRIX16 "    /  %" PRIu16 "\n"
+			      "CRC16-CCITT_R1 (0xffff) = 0x%04" PRIX16 "    /  %" PRIu16 "\n"
+			      "crc_3309_val (0xffff) = 0x%04" PRIX16 "    /  %" PRIu16 "\n"
 				  "CRC-CCITT (0x1d0f) = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
 				  "CRC-CCITT (Kermit) = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
 				  "CRC-DNP            = 0x%04" PRIX16 "      /  %" PRIu16 "\n"
@@ -257,6 +273,9 @@ int main( int argc, char *argv[] ) {
 				, crc_sick_val,       crc_sick_val
 				, crc_ccitt_0000_val, crc_ccitt_0000_val
 				, crc_ccitt_ffff_val, crc_ccitt_ffff_val
+				, crc_crc16_ccitt_val, crc_crc16_ccitt_val
+				, crc_crc16_ccitt_val_r1, crc_crc16_ccitt_val_r1
+				, crc_3309_val, crc_3309_val
 				, crc_ccitt_1d0f_val, crc_ccitt_1d0f_val
 				, crc_kermit_val,     crc_kermit_val
 				, crc_dnp_val,        crc_dnp_val

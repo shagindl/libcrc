@@ -96,6 +96,9 @@ uint16_t		update_crc_ccitt(   uint16_t crc, unsigned char c                     
 uint16_t		update_crc_dnp(     uint16_t crc, unsigned char c                          );
 uint16_t		update_crc_kermit(  uint16_t crc, unsigned char c                          );
 uint16_t		update_crc_sick(    uint16_t crc, unsigned char c, unsigned char prev_byte );
+uint16_t		update_crc16_ccitt(uint16_t crc_init, unsigned char *data_p, uint32_t length);
+uint16_t		crc16_ccitt(unsigned char *data_p, uint32_t length);
+uint16_t	    crc_3309(uint16_t crc, uint8_t *pData, uint32_t size);
 
 /*
  * Global CRC lookup tables
