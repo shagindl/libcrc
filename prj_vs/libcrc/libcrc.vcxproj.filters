@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\src\nmea-chk.c">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\crc-16.c">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\checksum.h">

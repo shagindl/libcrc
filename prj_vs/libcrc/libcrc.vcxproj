@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\examples\tstcrc.c" />
+    <ClCompile Include="..\..\src\crc-16.c" />
     <ClCompile Include="..\..\src\crc16.c" />
     <ClCompile Include="..\..\src\crc32.c" />
     <ClCompile Include="..\..\src\crc64.c" />
