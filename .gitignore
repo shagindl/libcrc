@@ -26,3 +26,4 @@ bin/prc
 *.inc
 *.user
 *.pdb
+/bin/null
